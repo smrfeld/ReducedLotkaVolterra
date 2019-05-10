@@ -143,16 +143,16 @@ int main() {
     int no_timesteps_adjoint = 10;
 
     // No markov chains
-    int no_markov_chains = 10;
+    int no_markov_chains = 10; // 10
     
     // Opt solver class
     OptProblemDynamic opt;
     
     // Params
-    int no_opt_steps = 5000; // 10000
+    int no_opt_steps = 5000; // 5000
     int no_cd_steps = 10;
     double dt = 0.01;
-    int no_steps_move = 20; // 100
+    int no_steps_move = 10; // 20
 
     std::string dir = "../data/learn_params/";
 
@@ -174,7 +174,7 @@ int main() {
     
     FNameTrajColl fnames;
     int timepoint_max = 500;
-    for (auto i_batch=1; i_batch<=50; i_batch++) {
+    for (auto i_batch=1; i_batch<=100; i_batch++) {
         // Add
         bool binary_read = true;
         FNameTraj fname_traj;
