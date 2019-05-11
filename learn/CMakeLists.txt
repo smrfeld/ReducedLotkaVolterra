@@ -52,6 +52,15 @@ target_link_libraries(cd_sampling PUBLIC ${DBLZ_LIB})
 target_link_libraries(cd_sampling PUBLIC ${Q3C1_LIB})
 
 ############################################################
+# sample_traj
+############################################################
+
+add_executable(sample_traj src/sample_traj.cpp src/dbm_ic.hpp)
+
+target_link_libraries(sample_traj PUBLIC ${DBLZ_LIB})
+target_link_libraries(sample_traj PUBLIC ${Q3C1_LIB})
+
+############################################################
 # extra
 ############################################################
 
