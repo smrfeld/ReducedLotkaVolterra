@@ -43,6 +43,15 @@ target_link_libraries(learn_params_rbm_centered PUBLIC ${DBLZ_LIB})
 target_link_libraries(learn_params_rbm_centered PUBLIC ${Q3C1_LIB})
 
 ############################################################
+# learn_params_dbm_centered
+############################################################
+
+add_executable(learn_params_dbm_centered src/learn_params_dbm_centered.cpp src/dbm_params_dbm_centered.hpp)
+
+target_link_libraries(learn_params_dbm_centered PUBLIC ${DBLZ_LIB})
+target_link_libraries(learn_params_dbm_centered PUBLIC ${Q3C1_LIB})
+
+############################################################
 # learn_params_alternating_binary
 ############################################################
 
