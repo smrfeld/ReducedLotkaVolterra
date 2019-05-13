@@ -25,13 +25,22 @@ target_link_libraries(learn_obs PUBLIC ${DBLZ_LIB})
 target_link_libraries(learn_obs PUBLIC ${Q3C1_LIB})
 
 ############################################################
-# learn_params
+# learn_params_rbm
 ############################################################
 
-add_executable(learn_params src/learn_params.cpp src/dbm_params.hpp)
+add_executable(learn_params_rbm src/learn_params_rbm.cpp src/dbm_params_rbm.hpp)
 
-target_link_libraries(learn_params PUBLIC ${DBLZ_LIB})
-target_link_libraries(learn_params PUBLIC ${Q3C1_LIB})
+target_link_libraries(learn_params_rbm PUBLIC ${DBLZ_LIB})
+target_link_libraries(learn_params_rbm PUBLIC ${Q3C1_LIB})
+
+############################################################
+# learn_params_rbm_centered
+############################################################
+
+add_executable(learn_params_rbm_centered src/learn_params_rbm_centered.cpp src/dbm_params_rbm_centered.hpp)
+
+target_link_libraries(learn_params_rbm_centered PUBLIC ${DBLZ_LIB})
+target_link_libraries(learn_params_rbm_centered PUBLIC ${Q3C1_LIB})
 
 ############################################################
 # learn_params_alternating_binary

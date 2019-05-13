@@ -6,77 +6,10 @@
 
 #include <sstream>
 
-#include "dbm_params.hpp"
+#include "dbm_params_rbm.hpp"
 
 using namespace dblz;
 using namespace std;
-
-// ***************
-// MARK: - Read means
-// ***************
-
-// Read init conds
-map<string,double> read_means(string fname) {
-    map<string,double> ret;
-    
-    std::ifstream f;
-    f.open(fname);
-    if (!f.is_open()) {
-        std::cerr << ">>> read_means <<< could not find file: " << fname << std::endl;
-        exit(EXIT_FAILURE);
-    }
-    std::string nu="";
-    std::string val="";
-    std::string line;
-    std::istringstream iss;
-    if (f.is_open()) { // make sure we found it
-        while (getline(f,line)) {
-            if (line == "") { continue; };
-            iss = std::istringstream(line);
-            iss >> nu;
-            iss >> val;
-            ret[nu] = (atof(val.c_str())) / 1000.0;
-            nu=""; val="";
-        };
-    };
-    f.close();
-    
-    return ret;
-};
-
-// ***************
-// MARK: - Read init conds
-// ***************
-
-// Read init conds
-map<string,double> read_ic(string fname) {
-    map<string,double> ret;
-    
-    std::ifstream f;
-    f.open(fname);
-    if (!f.is_open()) {
-        std::cerr << ">>> read_ic <<< could not find file: " << fname << std::endl;
-        exit(EXIT_FAILURE);
-    }
-    std::string nu="";
-    std::string val="";
-    std::string line;
-    std::istringstream iss;
-    if (f.is_open()) { // make sure we found it
-        while (getline(f,line)) {
-            if (line == "") { continue; };
-            iss = std::istringstream(line);
-            iss >> nu;
-            iss >> val;
-            ret[nu] = (atof(val.c_str()));
-            nu=""; val="";
-        };
-    };
-    f.close();
-    
-    return ret;
-};
-
 
 int main() {
 
