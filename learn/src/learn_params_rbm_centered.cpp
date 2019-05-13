@@ -87,7 +87,7 @@ int main() {
     double dt = 0.01;
     int no_steps_move = 20; // 20
 
-    std::string dir = "../data/learn_params/";
+    std::string dir = "../data/learn_params_rbm_centered/";
 
     // ***************
     // MARK: - Set up the initial optimizer with the timepoints
@@ -96,7 +96,12 @@ int main() {
     for (auto ixn: dbm.ixns) {
         ixn->set_no_timesteps(no_timesteps_ixn_params); // NOTE: MUST do this before dbm.latt->set_no_timesteps!
     };
-    
+    for (auto pr1: dbm.center_vec) {
+        for (auto center: pr1.second) {
+            center->set_no_timesteps(no_timesteps_ixn_params); // NOTE: MUST do this before dbm.latt->set_no_timesteps!
+        };
+    };
+
     dbm.latt->set_no_markov_chains(MCType::AWAKE, no_markov_chains);
     dbm.latt->set_no_markov_chains(MCType::ASLEEP, no_markov_chains);
     dbm.latt->set_no_timesteps(timepoint_start_wake_sleep, no_timesteps_wake_sleep);
@@ -136,6 +141,11 @@ int main() {
             for (auto ixn: dbm.ixns) {
                 ixn->set_no_timesteps(no_timesteps_ixn_params);
             };
+            for (auto pr1: dbm.center_vec) {
+                for (auto center: pr1.second) {
+                    center->set_no_timesteps(no_timesteps_ixn_params); // NOTE: MUST do this before dbm.latt->set_no_timesteps!
+                };
+            };
             
             // Move adjoint forward
             timepoint_start_adjoint += 1;
@@ -149,7 +159,7 @@ int main() {
         opt.solve_one_step_rbm_cd_params(dbm.latt, opt_step, 0, no_timesteps_ixn_params, timepoint_start_wake_sleep, no_timesteps_wake_sleep, timepoint_start_adjoint, no_timesteps_adjoint, dt, no_cd_steps, fnames, options, options_wake_sleep);
         
         // Write
-        if (opt_step == 1 || opt_step % 100 == 0 || opt_step == no_opt_steps) {
+        if (opt_step == 1 || opt_step % 10 == 0 || opt_step == no_opt_steps) {
             int i_write = opt_step;
             if (opt_step == 1) {
                 i_write = 0;
@@ -171,7 +181,7 @@ int main() {
 	    for (auto ixn: dbm.ixns) {
                 ixn->get_diff_eq_rhs()->write_to_file(dir + "diff_eq_rhs/" + ixn->get_name() + "_" + pad_str(no_opt_steps,5) + ".txt");
             };
-	};
+        };
     };
     
 	return 0;

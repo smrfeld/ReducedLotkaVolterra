@@ -80,18 +80,20 @@ struct DBM {
         
         cout << "--- Making centers ---" << endl;
 
+        double init_center_val = 100.0/1600.0;
+        
         sp_name = "X";
-        center_map[0][sp_name] = make_shared<CenterTraj>(0,species_map.at(0).at(sp_name));
+        center_map[0][sp_name] = make_shared<CenterTraj>(0,species_map.at(0).at(sp_name),init_center_val);
         center_vec[0].push_back(center_map.at(0).at(sp_name));
         sp_name = "Y";
-        center_map[0][sp_name] = make_shared<CenterTraj>(0,species_map.at(0).at(sp_name));
+        center_map[0][sp_name] = make_shared<CenterTraj>(0,species_map.at(0).at(sp_name),init_center_val);
         center_vec[0].push_back(center_map.at(0).at(sp_name));
         
         sp_name = "X1";
-        center_map[1][sp_name] = make_shared<CenterTraj>(1,species_map.at(1).at(sp_name));
+        center_map[1][sp_name] = make_shared<CenterTraj>(1,species_map.at(1).at(sp_name),init_center_val);
         center_vec[1].push_back(center_map.at(1).at(sp_name));
         sp_name = "Y1";
-        center_map[1][sp_name] = make_shared<CenterTraj>(1,species_map.at(1).at(sp_name));
+        center_map[1][sp_name] = make_shared<CenterTraj>(1,species_map.at(1).at(sp_name),init_center_val);
         center_vec[1].push_back(center_map.at(1).at(sp_name));
 
         cout << "--- [Finished] Making centers ---" << endl;
@@ -153,12 +155,21 @@ struct DBM {
         Domain1DParam *dom_bY1 = new Domain1DParam(bias.at(1).at("bY1"), spacing_bias_h, init_conds_ixns.at("bY1") - 0.5*spacing_bias_h);
         dom = std::vector<Domain1DParam*>({dom_hX,dom_hY,dom_wXX1,dom_wYY1,dom_bX1,dom_bY1});
         
-        std::shared_ptr<DiffEqRHS> rhs;
-        for (auto ixn: ixns) {
-            rhs = make_shared<DiffEqRHS>("rhs " + ixn->get_name(), ixn, dom, lrs.at(ixn->get_name()));
-            ixn->set_diff_eq_rhs(rhs);
+        // biases
+        for (auto pr1: bias) {
+            for (auto pr2: pr1.second) {
+                auto rhs = make_shared<DiffEqRHS>("rhs " + pr2.second->get_name(), pr2.second, dom, lrs.at(pr2.first));
+                pr2.second->set_diff_eq_rhs(rhs);
+            };
         };
         
+        // weights
+        auto rhs_wXX1 = make_shared<DiffEqRHSCenteredHomWeight>("rhs wXX1", w_ixns.at(0).at("wXX1"), dom, lrs.at("wXX1"), 4, bias.at(0).at("hX"), bias.at(1).at("bX1"), center_map.at(0).at("X"), center_map.at(1).at("X1"));
+        w_ixns.at(0).at("wXX1")->set_diff_eq_rhs(rhs_wXX1);
+
+        auto rhs_wYY1 = make_shared<DiffEqRHSCenteredHomWeight>("rhs wYY1", w_ixns.at(0).at("wYY1"), dom, lrs.at("wYY1"), 4, bias.at(0).at("hY"), bias.at(1).at("bY1"), center_map.at(0).at("Y"), center_map.at(1).at("Y1"));
+        w_ixns.at(0).at("wYY1")->set_diff_eq_rhs(rhs_wYY1);
+
         cout << "--- [Finished] Making diff eq rhs ---" << endl;
         cout << endl;
 
@@ -228,7 +239,7 @@ struct DBM {
         
         int no_dims = 2;
         int side_length = 40;
-        latt = make_shared<LatticeTrajCenteredHom>(no_dims,side_length,species_vec.at(0),center_vec.at(0));
+        latt = make_shared<LatticeTrajCenteredHom>(no_dims, side_length, species_vec.at(0), center_vec.at(0));
 
         cout << " > begin visible" << endl;
         
@@ -241,7 +252,8 @@ struct DBM {
         cout << " > begin hidden" << endl;
     
         // Add layer
-        latt->add_layer(1, side_length, species_vec.at(1), center_vec.at(1));
+        int conn_mult = 4;
+        latt->add_layer(1, side_length, species_vec.at(1), center_vec.at(1), conn_mult);
         
         // Connectivity
         for (auto i=1; i<=side_length; i++) {
