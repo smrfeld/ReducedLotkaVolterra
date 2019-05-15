@@ -6,7 +6,7 @@
 
 #include <sstream>
 
-#include "dbm_params_dbm_centered.hpp"
+#include "dbm_centered.hpp"
 
 using namespace dblz;
 using namespace std;
@@ -53,9 +53,11 @@ int main() {
     // MARK: - DBM
     // ***************
     
+    int conn_mult_01 = 9;
+    int conn_mult_12 = 9;
     double spacing = 0.1;
-    auto dbm = DBM(spacing, init_conds_ixns, lrs);
-
+    auto dbm = DBM(conn_mult_01, conn_mult_12, spacing, init_conds_ixns, lrs);
+    
     // ***************
     // MARK: - Options
     // ***************
@@ -102,7 +104,7 @@ int main() {
     double dt = 0.01;
     int no_steps_move = 20; // 20
 
-    std::string dir = "../data/learn_params_dbm_centered/";
+    std::string dir = "../data/learn_dbm_centered_"+pad_str(conn_mult_01,1)+"_"+pad_str(conn_mult_12,1)+"/";
 
     // ***************
     // MARK: - Set up the initial optimizer with the timepoints
@@ -167,7 +169,7 @@ int main() {
         };
         
         // Solve
-        opt.solve_one_step_bm_params(dbm.latt, opt_step, 0, no_timesteps_ixn_params, timepoint_start_wake_sleep, no_timesteps_wake_sleep, timepoint_start_adjoint, no_timesteps_adjoint, dt, no_steps_awake, no_steps_asleep, fnames, options, options_wake_sleep);
+        opt.solve_one_step_bm_params(dbm.latt, opt_step, 0, no_timesteps_ixn_params, timepoint_start_wake_sleep, no_timesteps_wake_sleep, timepoint_start_adjoint, no_timesteps_adjoint, dt, no_steps_awake, no_steps_asleep, fnames, dbm.deriv_terms, options, options_wake_sleep);
         
         // Write
         if (opt_step == 1 || opt_step % 100 == 0 || opt_step == no_opt_steps) {

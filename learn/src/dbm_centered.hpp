@@ -36,11 +36,19 @@ struct DBM {
     // Domain
     std::vector<Domain1DParam*> dom;
     
+    // Deriv terms
+    vector<shared_ptr<AdjointParamsCenteredHomDerivTerm>> deriv_terms;
+    
     /********************
      Constructor
      ********************/
     
-    DBM(double spacing, map<string, double> init_conds_ixns, std::map<string,double> lrs) {
+    DBM(int conn_mult_01, int conn_mult_12, double spacing, map<string, double> init_conds_ixns, std::map<string,double> lrs) {
+        
+        if ((conn_mult_01 != 4 && conn_mult_01 != 9) || (conn_mult_12 != 4 && conn_mult_12 != 9)) {
+            std::cerr << "Only conn mults 4, 9, etc supported (catch here to double check!)" << std::endl;
+            exit(EXIT_FAILURE);
+        };
         
         // ***************
         // MARK: - Species
@@ -105,7 +113,7 @@ struct DBM {
         cout << "--- Making diff eq rhs ---" << endl;
 
         double spacing_bias_v = spacing;
-        double spacing_bias_h = spacing;
+        // double spacing_bias_h = spacing;
         double spacing_weight = spacing;
         Domain1DParam *dom_hX = new Domain1DParam(hX, spacing_bias_v, init_conds_ixns.at("hX") - 0.5*spacing_bias_v);
         Domain1DParam *dom_hY = new Domain1DParam(hY, spacing_bias_v, init_conds_ixns.at("hY") - 0.5*spacing_bias_v);
@@ -140,16 +148,16 @@ struct DBM {
         bY2->set_diff_eq_rhs(rhs_bY2);
         
         // weights
-        auto rhs_wXX1 = make_shared<DiffEqRHSCenteredHomWeight>("rhs wXX1", wXX1, dom, lrs.at("wXX1"), 4, hX, bX1, center_X, center_X1);
+        auto rhs_wXX1 = make_shared<DiffEqRHSCenteredHomWeight>("rhs wXX1", wXX1, dom, lrs.at("wXX1"), conn_mult_01, hX, bX1, center_X, center_X1);
         wXX1->set_diff_eq_rhs(rhs_wXX1);
 
-        auto rhs_wYY1 = make_shared<DiffEqRHSCenteredHomWeight>("rhs wYY1", wYY1, dom, lrs.at("wYY1"), 4, hY, bY1, center_Y, center_Y1);
+        auto rhs_wYY1 = make_shared<DiffEqRHSCenteredHomWeight>("rhs wYY1", wYY1, dom, lrs.at("wYY1"), conn_mult_01, hY, bY1, center_Y, center_Y1);
         wYY1->set_diff_eq_rhs(rhs_wYY1);
 
-        auto rhs_wX1X2 = make_shared<DiffEqRHSCenteredHomWeight>("rhs wX1X2", wX1X2, dom, lrs.at("wX1X2"), 4, bX1, bX2, center_X1, center_X2);
+        auto rhs_wX1X2 = make_shared<DiffEqRHSCenteredHomWeight>("rhs wX1X2", wX1X2, dom, lrs.at("wX1X2"), conn_mult_12, bX1, bX2, center_X1, center_X2);
         wX1X2->set_diff_eq_rhs(rhs_wX1X2);
 
-        auto rhs_wY1Y2 = make_shared<DiffEqRHSCenteredHomWeight>("rhs wY1Y2", wY1Y2, dom, lrs.at("wY1Y2"), 4, bY1, bY2, center_Y1, center_Y2);
+        auto rhs_wY1Y2 = make_shared<DiffEqRHSCenteredHomWeight>("rhs wY1Y2", wY1Y2, dom, lrs.at("wY1Y2"), conn_mult_12, bY1, bY2, center_Y1, center_Y2);
         wY1Y2->set_diff_eq_rhs(rhs_wY1Y2);
 
         cout << "--- [Finished] Making diff eq rhs ---" << endl;
@@ -189,10 +197,10 @@ struct DBM {
         all_center_trajs[2][species_Y2] = center_Y2;
         // Conn mults
         std::map<int, std::map<int,int>> conn_mults;
-        conn_mults[0][1] = 4;
-        conn_mults[1][0] = 4;
-        conn_mults[1][2] = 9;
-        conn_mults[2][1] = 9;
+        conn_mults[0][1] = conn_mult_01;
+        conn_mults[1][0] = conn_mult_01;
+        conn_mults[1][2] = conn_mult_12;
+        conn_mults[2][1] = conn_mult_12;
 
         // bias
         auto deriv_term_hX = make_shared<AdjointParamsCenteredHomDerivTerm>(hX, all_biases, all_weights, all_center_trajs, conn_mults);
@@ -221,20 +229,22 @@ struct DBM {
 
         // weights
         auto deriv_term_wXX1 = make_shared<AdjointParamsCenteredHomDerivTerm>(wXX1, all_biases, all_weights, all_center_trajs, conn_mults);
-        auto adjoint_wXX1 = make_shared<AdjointParamsCenteredHomWeight>("adjoint wXX1",wXX1,deriv_term_wXX1,deriv_term_hX,deriv_term_bX1,4,center_X,center_X1,adjoint_hX,adjoint_bX1,std::vector<CTptr>({center_X,center_Y}),std::vector<CTptr>({center_X1,center_Y1}));
+        auto adjoint_wXX1 = make_shared<AdjointParamsCenteredHomWeight>("adjoint wXX1",wXX1,deriv_term_wXX1,deriv_term_hX,deriv_term_bX1,conn_mult_01,center_X,center_X1,adjoint_hX,adjoint_bX1,std::vector<CTptr>({center_X,center_Y}),std::vector<CTptr>({center_X1,center_Y1}));
         wXX1->set_adjoint(adjoint_wXX1);
 
         auto deriv_term_wYY1 = make_shared<AdjointParamsCenteredHomDerivTerm>(wYY1, all_biases, all_weights, all_center_trajs, conn_mults);
-        auto adjoint_wYY1 = make_shared<AdjointParamsCenteredHomWeight>("adjoint wYY1",wYY1,deriv_term_wYY1,deriv_term_hY,deriv_term_bY1,4,center_Y,center_Y1,adjoint_hY,adjoint_bY1,std::vector<CTptr>({center_X,center_Y}),std::vector<CTptr>({center_X1,center_Y1}));
+        auto adjoint_wYY1 = make_shared<AdjointParamsCenteredHomWeight>("adjoint wYY1",wYY1,deriv_term_wYY1,deriv_term_hY,deriv_term_bY1,conn_mult_01,center_Y,center_Y1,adjoint_hY,adjoint_bY1,std::vector<CTptr>({center_X,center_Y}),std::vector<CTptr>({center_X1,center_Y1}));
         wYY1->set_adjoint(adjoint_wYY1);
         
         auto deriv_term_wX1X2 = make_shared<AdjointParamsCenteredHomDerivTerm>(wX1X2, all_biases, all_weights, all_center_trajs, conn_mults);
-        auto adjoint_wX1X2 = make_shared<AdjointParamsCenteredHomWeight>("adjoint wX1X2",wX1X2,deriv_term_wX1X2,deriv_term_bX1,deriv_term_bX2,4,center_X1,center_X2,adjoint_bX1,adjoint_bX2,std::vector<CTptr>({center_X1,center_Y1}),std::vector<CTptr>({center_X2,center_Y2}));
+        auto adjoint_wX1X2 = make_shared<AdjointParamsCenteredHomWeight>("adjoint wX1X2",wX1X2,deriv_term_wX1X2,deriv_term_bX1,deriv_term_bX2,conn_mult_12,center_X1,center_X2,adjoint_bX1,adjoint_bX2,std::vector<CTptr>({center_X1,center_Y1}),std::vector<CTptr>({center_X2,center_Y2}));
         wX1X2->set_adjoint(adjoint_wX1X2);
         
         auto deriv_term_wY1Y2 = make_shared<AdjointParamsCenteredHomDerivTerm>(wY1Y2, all_biases, all_weights, all_center_trajs, conn_mults);
-        auto adjoint_wY1Y2 = make_shared<AdjointParamsCenteredHomWeight>("adjoint wY1Y2",wY1Y2,deriv_term_wY1Y2,deriv_term_bY1,deriv_term_bY2,4,center_Y1,center_Y2,adjoint_bY1,adjoint_bY2,std::vector<CTptr>({center_X1,center_Y1}),std::vector<CTptr>({center_X2,center_Y2}));
+        auto adjoint_wY1Y2 = make_shared<AdjointParamsCenteredHomWeight>("adjoint wY1Y2",wY1Y2,deriv_term_wY1Y2,deriv_term_bY1,deriv_term_bY2,conn_mult_12,center_Y1,center_Y2,adjoint_bY1,adjoint_bY2,std::vector<CTptr>({center_X1,center_Y1}),std::vector<CTptr>({center_X2,center_Y2}));
         wY1Y2->set_adjoint(adjoint_wY1Y2);
+        
+        deriv_terms = vector<shared_ptr<AdjointParamsCenteredHomDerivTerm>>({deriv_term_hX, deriv_term_hY, deriv_term_bX1, deriv_term_bY1, deriv_term_wXX1, deriv_term_wYY1, deriv_term_bX2, deriv_term_bY2, deriv_term_wX1X2, deriv_term_wY1Y2});
         
         cout << "--- [Finished] Making adjoint ---" << endl;
         cout << endl;
@@ -260,16 +270,15 @@ struct DBM {
         cout << " > begin hidden" << endl;
     
         // Add layer
-        int conn_mult = 4;
-        latt->add_layer(1, side_length, std::vector<Sptr>({species_X1,species_Y1}), std::vector<CTptr>({center_X1,center_Y1}), conn_mult);
+        latt->add_layer(1, side_length, std::vector<Sptr>({species_X1,species_Y1}), std::vector<CTptr>({center_X1,center_Y1}), conn_mult_01);
         
         // Connectivity
         for (auto i=1; i<=side_length; i++) {
             for (auto j=1; j<=side_length; j++) {
                 
                 // Displacements
-                for (auto i2=0; i2<=1; i2++) {
-                    for (auto j2=0; j2<=1; j2++) {
+                for (auto i2=0; i2<=sqrt(conn_mult_01); i2++) {
+                    for (auto j2=0; j2<=sqrt(conn_mult_01); j2++) {
                         auto i3 = i+i2;
                         if (i3 > side_length) {
                             i3 = i3-side_length;
@@ -301,15 +310,15 @@ struct DBM {
         latt->set_ixn_between_layers(0, species_Y, 1, species_Y1, wYY1);
         
         // Layer 2
-        latt->add_layer(2, side_length, std::vector<Sptr>({species_X2,species_Y2}), std::vector<CTptr>({center_X2,center_Y2}), conn_mult);
+        latt->add_layer(2, side_length, std::vector<Sptr>({species_X2,species_Y2}), std::vector<CTptr>({center_X2,center_Y2}), conn_mult_12);
         
         // Connectivity
         for (auto i=1; i<=side_length; i++) {
             for (auto j=1; j<=side_length; j++) {
                 
                 // Displacements
-                for (auto i2=0; i2<=2; i2++) {
-                    for (auto j2=0; j2<=2; j2++) {
+                for (auto i2=0; i2<=sqrt(conn_mult_12); i2++) {
+                    for (auto j2=0; j2<=sqrt(conn_mult_12); j2++) {
                         auto i3 = i+i2;
                         if (i3 > side_length) {
                             i3 = i3-side_length;
