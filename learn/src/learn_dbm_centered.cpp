@@ -21,12 +21,12 @@ int main() {
     
     init_conds_ixns["hX"] = -2.63; // -2.63
     init_conds_ixns["hY"] = -2.63;
-    init_conds_ixns["bX1"] = -2.63;
-    init_conds_ixns["bY1"] = -2.63;
+    init_conds_ixns["bX1"] = 0.0;
+    init_conds_ixns["bY1"] = 0.0;
     init_conds_ixns["wXX1"] = 0.0;
     init_conds_ixns["wYY1"] = 0.0;
-    init_conds_ixns["bX2"] = -2.63;
-    init_conds_ixns["bY2"] = -2.63;
+    init_conds_ixns["bX2"] = 0.0;
+    init_conds_ixns["bY2"] = 0.0;
     init_conds_ixns["wX1X2"] = 0.0;
     init_conds_ixns["wY1Y2"] = 0.0;
 
@@ -36,8 +36,8 @@ int main() {
     
     map<string,double> lrs;
 
-    double lr_bias = 2.50; // 25
-    double lr_weight = 2.50; // 25
+    double lr_bias = 25.0; // 25
+    double lr_weight = 25.0; // 25
     lrs["hX"] = lr_bias;
     lrs["hY"] = lr_bias;
     lrs["bX1"] = lr_bias;
@@ -53,8 +53,8 @@ int main() {
     // MARK: - DBM
     // ***************
     
-    int conn_mult_01 = 9;
-    int conn_mult_12 = 9;
+    int conn_mult_01 = 4;
+    int conn_mult_12 = 4;
     double spacing = 0.1;
     auto dbm = DBM(conn_mult_01, conn_mult_12, spacing, init_conds_ixns, lrs);
     
@@ -64,9 +64,6 @@ int main() {
     
     OptionsSolveDynamic options;
     OptionsWakeSleep_BM options_wake_sleep;
-    
-    // Gibbs
-    options_wake_sleep.awake_phase_mode = AwakePhaseMode::GIBBS_SAMPLING;
     
     options.verbose_timing = true;
     options_wake_sleep.verbose_timing = false;
@@ -78,6 +75,13 @@ int main() {
     
     // substeps
     options.no_steps_per_step_IP = 1;
+    
+    options_wake_sleep.awake_phase_mode = AwakePhaseMode::GIBBS_SAMPLING;
+    options_wake_sleep.awake_hidden_layers_final_prob = false; // only for gibbs
+    options_wake_sleep.asleep_hidden_layers_final_prob = false;
+
+    // sliding
+    options.sliding_factor = 0.5;
     
     // ***************
     // MARK: - Setup optimizer
@@ -98,13 +102,13 @@ int main() {
     OptProblemDynamic opt;
     
     // Params
-    int no_opt_steps = 9800; // 5000
+    int no_opt_steps = 980; // 5000
     int no_steps_awake = 10;
     int no_steps_asleep = 10;
     double dt = 0.01;
-    int no_steps_move = 20; // 20
+    int no_steps_move = 2; // 20
 
-    std::string dir = "../data/learn_dbm_centered_"+pad_str(conn_mult_01,1)+"_"+pad_str(conn_mult_12,1)+"/";
+    std::string dir = "../data/learn_dbm_centered_"+pad_str(conn_mult_01,1)+"_"+pad_str(conn_mult_12,1)+"_x10/";
 
     // ***************
     // MARK: - Set up the initial optimizer with the timepoints
@@ -169,10 +173,10 @@ int main() {
         };
         
         // Solve
-        opt.solve_one_step_bm_params(dbm.latt, opt_step, 0, no_timesteps_ixn_params, timepoint_start_wake_sleep, no_timesteps_wake_sleep, timepoint_start_adjoint, no_timesteps_adjoint, dt, no_steps_awake, no_steps_asleep, fnames, dbm.deriv_terms, options, options_wake_sleep);
+        opt.solve_one_step_bm_params(dbm.latt, dbm.ixns, dbm.all_domains, opt_step, 0, no_timesteps_ixn_params, timepoint_start_wake_sleep, no_timesteps_wake_sleep, timepoint_start_adjoint, no_timesteps_adjoint, dt, no_steps_awake, no_steps_asleep, fnames, dbm.deriv_terms, options, options_wake_sleep);
         
         // Write
-        if (opt_step == 1 || opt_step % 100 == 0 || opt_step == no_opt_steps) {
+        if (opt_step == 1 || opt_step % 10 == 0 || opt_step == no_opt_steps) {
             int i_write = opt_step;
             if (opt_step == 1) {
                 i_write = 0;
