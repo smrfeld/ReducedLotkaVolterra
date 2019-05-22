@@ -3,12 +3,19 @@
 ## Contents
 
 * `create_data_dirs.py` - create data directories.
-* `mathematica` contains Mathematica scripts.
-* ``
+* `mathematica` - contains the following Mathematica notebooks:
+	* `diagnose_sampling` - for visualizing Gibbs sampling steps.
+	* `figures` - for generating the figures used in the paper.
+	* `ixn_params_lp` - for lowpass filtering the learned interactions.
+	* `monitor` - for monitoring progress during learning.
+* `src` - contains the source code:
+	* `learn_centered.cpp` and `dbm_centered.hpp` - these are the main codes used for training the moment closure model.
+	* `sample_traj.cpp` and `dbm_static.hpp` - these are the codes used for testing the learned model by sampling at each timepoint.
+	* `diagnose_sampling.cpp` - this is used to visualize the Gibbs sampling steps, if needed.
 
-## Running
+More directions follow.
 
-This requires the stochastic simulations to have been generated as training data in the `stoch_sims` directory.
+## Building
 
 Use the convenient Makefile:
 ```
@@ -19,6 +26,8 @@ cmake ..
 then make the appropriate code as described below.
 
 ## Learning
+
+This requires the stochastic simulations to have been generated as training data in the `stoch_sims` directory.
 
 To learn the moment closure model, run from the build directory:
 ```
