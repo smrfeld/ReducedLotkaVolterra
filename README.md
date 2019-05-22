@@ -14,6 +14,6 @@ Code used in the paper XXX.
 * [stoch_sims](stoch_sims) contains code to generate the stochastic simulations.
 * [learn](learn) contains code to train the dynamic Boltzmann distribution.
 
-Other contents:
+Other (not used in paper) contents:
 * `ode` is a Mathematica notebook to solve the ODE system for a well-mixed Lotka-Volterra system.
 * `ssa` is a Mathematica notebook to generate stochastic simulations using the Gillespie algorithm for the well-mixed Lotka-Volterra system. This requires the Gillesipe module for Mathematica, available [here](https://github.com/smrfeld/GillespieMathematica).
