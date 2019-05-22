@@ -33,7 +33,7 @@ struct DBM {
      Constructor
      ********************/
     
-    DBM() {
+    DBM(int conn_mult_01, int conn_mult_12) {
         
         // ***************
         // MARK: - Species
@@ -100,8 +100,8 @@ struct DBM {
             for (auto j=1; j<=side_length; j++) {
                 
                 // Displacements
-                for (auto i2=0; i2<=1; i2++) {
-                    for (auto j2=0; j2<=1; j2++) {
+                for (auto i2=0; i2<=sqrt(conn_mult_01)-1; i2++) {
+                    for (auto j2=0; j2<=sqrt(conn_mult_01)-1; j2++) {
                         auto i3 = i+i2;
                         if (i3 > side_length) {
                             i3 = i3-side_length;
@@ -140,8 +140,8 @@ struct DBM {
             for (auto j=1; j<=side_length; j++) {
                 
                 // Displacements
-                for (auto i2=0; i2<=1; i2++) {
-                    for (auto j2=0; j2<=1; j2++) {
+                for (auto i2=0; i2<=sqrt(conn_mult_12)-1; i2++) {
+                    for (auto j2=0; j2<=sqrt(conn_mult_12)-1; j2++) {
                         auto i3 = i+i2;
                         if (i3 > side_length) {
                             i3 = i3-side_length;

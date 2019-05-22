@@ -103,9 +103,9 @@ int main() {
 
     // Write
     for (int i_chain=0; i_chain<no_markov_chains; i_chain++) {
-        dbm.latt->write_layer_to_file(MCType::AWAKE, i_chain, 0, "../data/diagnose_dbm/awake_chain_"+pad_str(i_chain, 2)+"_layer_0.txt", true);
-        dbm.latt->write_layer_to_file(MCType::AWAKE, i_chain, 1, "../data/diagnose_dbm/awake_chain_"+pad_str(i_chain, 2)+"_layer_1.txt", true);
-        dbm.latt->write_layer_to_file(MCType::AWAKE, i_chain, 2, "../data/diagnose_dbm/awake_chain_"+pad_str(i_chain, 2)+"_layer_2.txt", true);
+        dbm.latt->write_layer_to_file(MCType::AWAKE, i_chain, 0, "../data/diagnose_sampling/awake_chain_"+pad_str(i_chain, 2)+"_layer_0.txt", true);
+        dbm.latt->write_layer_to_file(MCType::AWAKE, i_chain, 1, "../data/diagnose_sampling/awake_chain_"+pad_str(i_chain, 2)+"_layer_1.txt", true);
+        dbm.latt->write_layer_to_file(MCType::AWAKE, i_chain, 2, "../data/diagnose_sampling/awake_chain_"+pad_str(i_chain, 2)+"_layer_2.txt", true);
     };
     
     // ***************
@@ -171,9 +171,9 @@ int main() {
 
     // Write
     for (int i_chain=0; i_chain<no_markov_chains; i_chain++) {
-        dbm.latt->write_layer_to_file(MCType::ASLEEP, i_chain, 0, "../data/diagnose_dbm/asleep_chain_"+pad_str(i_chain, 2)+"_layer_0.txt", true);
-        dbm.latt->write_layer_to_file(MCType::ASLEEP, i_chain, 1, "../data/diagnose_dbm/asleep_chain_"+pad_str(i_chain, 2)+"_layer_1.txt", true);
-        dbm.latt->write_layer_to_file(MCType::ASLEEP, i_chain, 2, "../data/diagnose_dbm/asleep_chain_"+pad_str(i_chain, 2)+"_layer_2.txt", true);
+        dbm.latt->write_layer_to_file(MCType::ASLEEP, i_chain, 0, "../data/diagnose_sampling/asleep_chain_"+pad_str(i_chain, 2)+"_layer_0.txt", true);
+        dbm.latt->write_layer_to_file(MCType::ASLEEP, i_chain, 1, "../data/diagnose_sampling/asleep_chain_"+pad_str(i_chain, 2)+"_layer_1.txt", true);
+        dbm.latt->write_layer_to_file(MCType::ASLEEP, i_chain, 2, "../data/diagnose_sampling/asleep_chain_"+pad_str(i_chain, 2)+"_layer_2.txt", true);
     };
     
 	return 0;

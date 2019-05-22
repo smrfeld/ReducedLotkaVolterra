@@ -1,0 +1,157 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      5375,        149]
+NotebookOptionsPosition[      4746,        129]
+NotebookOutlinePosition[      5081,        144]
+CellTagsIndexPosition[      5038,        141]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Parameters", "Title",ExpressionUUID->"981876e8-2fe3-4e52-a4bc-a269de5d46e2"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"dirIxns", "=", "\"\<learn_dbm_centered\>\""}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"optStepRead", "=", "980"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"allTheta", "=", 
+   RowBox[{"{", 
+    RowBox[{
+    "\"\<hX\>\"", ",", "\"\<hY\>\"", ",", "\"\<wXX1\>\"", ",", "\"\<wYY1\>\"",
+      ",", "\"\<bX1\>\"", ",", "\"\<bY1\>\"", ",", "\"\<wX1X2\>\"", ",", 
+     "\"\<wY1Y2\>\"", ",", "\"\<bX2\>\"", ",", "\"\<bY2\>\""}], "}"}]}], 
+  ";"}]}], "Input",ExpressionUUID->"3506856b-41a7-440a-862a-2e514cb5b66b"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Low pass filter the ixn params", "Title",ExpressionUUID->"e5c96874-088f-40e0-80fc-e6f1faf661d4"],
+
+Cell[BoxData[
+ RowBox[{"Module", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"dataParamsLP", ",", "dataParams", ",", "f"}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"SetDirectory", "[", 
+     RowBox[{"NotebookDirectory", "[", "]"}], "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"dataParamsLP", "=", 
+     RowBox[{"Association", "[", "]"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"Do", "[", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"dataParams", "=", 
+        RowBox[{"Import", "[", 
+         RowBox[{
+          RowBox[{
+          "\"\<../data/\>\"", "<>", "dirIxns", "<>", "\"\</ixn_params/\>\"", "<>",
+            "ixn", "<>", "\"\<_\>\"", "<>", 
+           RowBox[{"IntegerString", "[", 
+            RowBox[{"optStepRead", ",", "10", ",", "5"}], "]"}], "<>", 
+           "\"\<.txt\>\""}], ",", "\"\<Table\>\""}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"dataParamsLP", "[", "ixn", "]"}], "=", 
+        RowBox[{"LowpassFilter", "[", 
+         RowBox[{
+          RowBox[{"dataParams", "[", 
+           RowBox[{"[", 
+            RowBox[{";;", ",", "2"}], "]"}], "]"}], ",", "0.1"}], "]"}]}], 
+       ";"}], "\[IndentingNewLine]", ",", 
+      RowBox[{"{", 
+       RowBox[{"ixn", ",", "allTheta"}], "}"}]}], "]"}], ";", 
+    "\[IndentingNewLine]", "\[IndentingNewLine]", 
+    RowBox[{"If", "[", 
+     RowBox[{
+      RowBox[{"!", 
+       RowBox[{"DirectoryQ", "[", 
+        RowBox[{
+        "\"\<../data/\>\"", "<>", "dirIxns", "<>", "\"\</ixn_params_lp\>\""}],
+         "]"}]}], ",", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"CreateDirectory", "[", 
+        RowBox[{
+        "\"\<../data/\>\"", "<>", "dirIxns", "<>", "\"\</ixn_params_lp\>\""}],
+         "]"}], ";"}]}], "\[IndentingNewLine]", "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Do", "[", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"f", "=", 
+        RowBox[{"OpenWrite", "[", 
+         RowBox[{
+         "\"\<../data/\>\"", "<>", "dirIxns", "<>", "\"\</ixn_params_lp/\>\"",
+           "<>", "ixn", "<>", "\"\<_\>\"", "<>", 
+          RowBox[{"IntegerString", "[", 
+           RowBox[{"optStepRead", ",", "10", ",", "5"}], "]"}], "<>", 
+          "\"\<.txt\>\""}], "]"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"Do", "[", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"WriteString", "[", 
+           RowBox[{"f", ",", 
+            RowBox[{
+             RowBox[{"ToString", "[", "i", "]"}], "<>", "\"\< \>\"", "<>", 
+             RowBox[{"ToString", "[", 
+              RowBox[{
+               RowBox[{"dataParamsLP", "[", "ixn", "]"}], "[", 
+               RowBox[{"[", 
+                RowBox[{"i", "+", "1"}], "]"}], "]"}], "]"}], "<>", 
+             "\"\<\\n\>\""}]}], "]"}], ";"}], "\[IndentingNewLine]", ",", 
+         RowBox[{"{", 
+          RowBox[{"i", ",", "0", ",", 
+           RowBox[{
+            RowBox[{"Length", "[", 
+             RowBox[{"dataParamsLP", "[", "ixn", "]"}], "]"}], "-", "1"}]}], 
+          "}"}]}], "]"}], ";", "\[IndentingNewLine]", 
+       RowBox[{"Close", "[", "f", "]"}], ";"}], "\[IndentingNewLine]", ",", 
+      RowBox[{"{", 
+       RowBox[{"ixn", ",", "allTheta"}], "}"}]}], "]"}], ";"}]}], 
+  "\[IndentingNewLine]", "]"}]], "Input",
+ CellLabel->"In[17]:=",ExpressionUUID->"6d4ea419-5ca3-436e-8e34-a854aa8f0ee5"]
+}, Open  ]]
+},
+WindowSize->{808, 911},
+WindowMargins->{{4, Automatic}, {Automatic, 4}},
+FrontEndVersion->"12.0 for Mac OS X x86 (64-bit) (April 8, 2019)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 82, 0, 98, "Title",ExpressionUUID->"981876e8-2fe3-4e52-a4bc-a269de5d46e2"],
+Cell[665, 24, 529, 12, 73, "Input",ExpressionUUID->"3506856b-41a7-440a-862a-2e514cb5b66b"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1231, 41, 102, 0, 98, "Title",ExpressionUUID->"e5c96874-088f-40e0-80fc-e6f1faf661d4"],
+Cell[1336, 43, 3394, 83, 451, "Input",ExpressionUUID->"6d4ea419-5ca3-436e-8e34-a854aa8f0ee5"]
+}, Open  ]]
+}
+]
+*)
+

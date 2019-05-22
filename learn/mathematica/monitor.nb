@@ -10,25 +10,25 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     40825,       1030]
-NotebookOptionsPosition[     38196,        981]
-NotebookOutlinePosition[     38535,        996]
-CellTagsIndexPosition[     38492,        993]
+NotebookDataLength[     32438,        834]
+NotebookOptionsPosition[     30294,        790]
+NotebookOutlinePosition[     30633,        805]
+CellTagsIndexPosition[     30590,        802]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
 Notebook[{
 
 Cell[CellGroupData[{
-Cell["Moments", "Title",ExpressionUUID->"f5e25c42-37fd-432f-905f-fdd1eff43cf3"],
+Cell["Monitor progress during learning", "Title",ExpressionUUID->"f5e25c42-37fd-432f-905f-fdd1eff43cf3"],
 
 Cell[CellGroupData[{
 
-Cell[BoxData[{
- RowBox[{
-  RowBox[{"SetDirectory", "[", 
-   RowBox[{"NotebookDirectory", "[", "]"}], "]"}], 
-  ";"}], "\[IndentingNewLine]", 
+Cell["Moments", "Chapter",ExpressionUUID->"cf0cefc0-4a60-40fc-88c8-466f7b7c9579"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
  RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
   RowBox[{
    RowBox[{"Module", "[", "\[IndentingNewLine]", 
@@ -36,7 +36,10 @@ Cell[BoxData[{
      RowBox[{"{", 
       RowBox[{"moments", ",", "dir"}], "}"}], ",", "\[IndentingNewLine]", 
      RowBox[{
-      RowBox[{"dir", "=", "\"\<learn_params_dbm_centered\>\""}], ";", 
+      RowBox[{"SetDirectory", "[", 
+       RowBox[{"NotebookDirectory", "[", "]"}], "]"}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"dir", "=", "\"\<learn_centered\>\""}], ";", 
       "\[IndentingNewLine]", 
       RowBox[{"moments", "=", 
        RowBox[{"Association", "[", "]"}]}], ";", "\[IndentingNewLine]", 
@@ -109,52 +112,7 @@ Cell[BoxData[{
              ",", 
              RowBox[{"PlotRange", "\[Rule]", 
               RowBox[{"{", 
-               RowBox[{"0", ",", "500"}], "}"}]}], ",", 
-             RowBox[{"ImageSize", "\[Rule]", "250"}]}], "]"}]}], "}"}], ",", 
-         "\[IndentingNewLine]", 
-         RowBox[{"{", 
-          RowBox[{
-           RowBox[{"ListLinePlot", "[", 
-            RowBox[{
-             RowBox[{"{", 
-              RowBox[{
-               RowBox[{
-                RowBox[{"moments", "[", "\"\<bX1\>\"", "]"}], "[", 
-                RowBox[{"[", 
-                 RowBox[{";;", ",", 
-                  RowBox[{"{", 
-                   RowBox[{"1", ",", "2"}], "}"}]}], "]"}], "]"}], ",", 
-               RowBox[{
-                RowBox[{"moments", "[", "\"\<bX1\>\"", "]"}], "[", 
-                RowBox[{"[", 
-                 RowBox[{";;", ",", 
-                  RowBox[{"{", 
-                   RowBox[{"1", ",", "3"}], "}"}]}], "]"}], "]"}]}], "}"}], 
-             ",", 
-             RowBox[{"PlotRange", "\[Rule]", 
-              RowBox[{"{", 
-               RowBox[{"0", ",", "800"}], "}"}]}], ",", 
-             RowBox[{"ImageSize", "\[Rule]", "250"}]}], "]"}], ",", 
-           RowBox[{"ListLinePlot", "[", 
-            RowBox[{
-             RowBox[{"{", 
-              RowBox[{
-               RowBox[{
-                RowBox[{"moments", "[", "\"\<bY1\>\"", "]"}], "[", 
-                RowBox[{"[", 
-                 RowBox[{";;", ",", 
-                  RowBox[{"{", 
-                   RowBox[{"1", ",", "2"}], "}"}]}], "]"}], "]"}], ",", 
-               RowBox[{
-                RowBox[{"moments", "[", "\"\<bY1\>\"", "]"}], "[", 
-                RowBox[{"[", 
-                 RowBox[{";;", ",", 
-                  RowBox[{"{", 
-                   RowBox[{"1", ",", "3"}], "}"}]}], "]"}], "]"}]}], "}"}], 
-             ",", 
-             RowBox[{"PlotRange", "\[Rule]", 
-              RowBox[{"{", 
-               RowBox[{"0", ",", "800"}], "}"}]}], ",", 
+               RowBox[{"0", ",", "1500"}], "}"}]}], ",", 
              RowBox[{"ImageSize", "\[Rule]", "250"}]}], "]"}]}], "}"}], ",", 
          "\[IndentingNewLine]", 
          RowBox[{"{", 
@@ -212,13 +170,13 @@ Cell[BoxData[{
              RowBox[{"{", 
               RowBox[{
                RowBox[{
-                RowBox[{"moments", "[", "\"\<bX2\>\"", "]"}], "[", 
+                RowBox[{"moments", "[", "\"\<bX1\>\"", "]"}], "[", 
                 RowBox[{"[", 
                  RowBox[{";;", ",", 
                   RowBox[{"{", 
                    RowBox[{"1", ",", "2"}], "}"}]}], "]"}], "]"}], ",", 
                RowBox[{
-                RowBox[{"moments", "[", "\"\<bX2\>\"", "]"}], "[", 
+                RowBox[{"moments", "[", "\"\<bX1\>\"", "]"}], "[", 
                 RowBox[{"[", 
                  RowBox[{";;", ",", 
                   RowBox[{"{", 
@@ -226,20 +184,20 @@ Cell[BoxData[{
              ",", 
              RowBox[{"PlotRange", "\[Rule]", 
               RowBox[{"{", 
-               RowBox[{"0", ",", "800"}], "}"}]}], ",", 
+               RowBox[{"0", ",", "1600"}], "}"}]}], ",", 
              RowBox[{"ImageSize", "\[Rule]", "250"}]}], "]"}], ",", 
            RowBox[{"ListLinePlot", "[", 
             RowBox[{
              RowBox[{"{", 
               RowBox[{
                RowBox[{
-                RowBox[{"moments", "[", "\"\<bY2\>\"", "]"}], "[", 
+                RowBox[{"moments", "[", "\"\<bY1\>\"", "]"}], "[", 
                 RowBox[{"[", 
                  RowBox[{";;", ",", 
                   RowBox[{"{", 
                    RowBox[{"1", ",", "2"}], "}"}]}], "]"}], "]"}], ",", 
                RowBox[{
-                RowBox[{"moments", "[", "\"\<bY2\>\"", "]"}], "[", 
+                RowBox[{"moments", "[", "\"\<bY1\>\"", "]"}], "[", 
                 RowBox[{"[", 
                  RowBox[{";;", ",", 
                   RowBox[{"{", 
@@ -247,7 +205,7 @@ Cell[BoxData[{
              ",", 
              RowBox[{"PlotRange", "\[Rule]", 
               RowBox[{"{", 
-               RowBox[{"0", ",", "800"}], "}"}]}], ",", 
+               RowBox[{"0", ",", "1600"}], "}"}]}], ",", 
              RowBox[{"ImageSize", "\[Rule]", "250"}]}], "]"}]}], "}"}], ",", 
          "\[IndentingNewLine]", 
          RowBox[{"{", 
@@ -296,36 +254,81 @@ Cell[BoxData[{
               RowBox[{"{", 
                RowBox[{
                 RowBox[{"-", "500"}], ",", "2000"}], "}"}]}], ",", 
+             RowBox[{"ImageSize", "\[Rule]", "250"}]}], "]"}]}], "}"}], ",", 
+         "\[IndentingNewLine]", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"ListLinePlot", "[", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"moments", "[", "\"\<bX2\>\"", "]"}], "[", 
+                RowBox[{"[", 
+                 RowBox[{";;", ",", 
+                  RowBox[{"{", 
+                   RowBox[{"1", ",", "2"}], "}"}]}], "]"}], "]"}], ",", 
+               RowBox[{
+                RowBox[{"moments", "[", "\"\<bX2\>\"", "]"}], "[", 
+                RowBox[{"[", 
+                 RowBox[{";;", ",", 
+                  RowBox[{"{", 
+                   RowBox[{"1", ",", "3"}], "}"}]}], "]"}], "]"}]}], "}"}], 
+             ",", 
+             RowBox[{"PlotRange", "\[Rule]", 
+              RowBox[{"{", 
+               RowBox[{"0", ",", "1600"}], "}"}]}], ",", 
+             RowBox[{"ImageSize", "\[Rule]", "250"}]}], "]"}], ",", 
+           RowBox[{"ListLinePlot", "[", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"moments", "[", "\"\<bY2\>\"", "]"}], "[", 
+                RowBox[{"[", 
+                 RowBox[{";;", ",", 
+                  RowBox[{"{", 
+                   RowBox[{"1", ",", "2"}], "}"}]}], "]"}], "]"}], ",", 
+               RowBox[{
+                RowBox[{"moments", "[", "\"\<bY2\>\"", "]"}], "[", 
+                RowBox[{"[", 
+                 RowBox[{";;", ",", 
+                  RowBox[{"{", 
+                   RowBox[{"1", ",", "3"}], "}"}]}], "]"}], "]"}]}], "}"}], 
+             ",", 
+             RowBox[{"PlotRange", "\[Rule]", 
+              RowBox[{"{", 
+               RowBox[{"0", ",", "1600"}], "}"}]}], ",", 
              RowBox[{"ImageSize", "\[Rule]", "250"}]}], "]"}]}], "}"}]}], 
         "\[IndentingNewLine]", "}"}], "]"}]}]}], "\[IndentingNewLine]", "]"}],
     "\[IndentingNewLine]", ",", 
    RowBox[{"{", 
-    RowBox[{"iOpt", ",", "0", ",", "9800", ",", "10"}], "}"}]}], 
-  "]"}]}], "Input",
- CellLabel->"In[1]:=",ExpressionUUID->"dcefeb2b-fc14-4f00-9f76-ddb9a4d52577"],
+    RowBox[{"iOpt", ",", "0", ",", "980", ",", "10"}], "}"}]}], 
+  "]"}]], "Input",ExpressionUUID->"dcefeb2b-fc14-4f00-9f76-ddb9a4d52577"],
 
 Cell[BoxData[
  TagBox[
   StyleBox[
-   DynamicModuleBox[{$CellContext`iOpt$$ = 7500, Typeset`show$$ = True, 
+   DynamicModuleBox[{$CellContext`iOpt$$ = 980, Typeset`show$$ = True, 
     Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
     Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
     "\"untitled\"", Typeset`specs$$ = {{
-      Hold[$CellContext`iOpt$$], 0, 9800, 10}}, Typeset`size$$ = {
-    509., {420.634033203125, 426.365966796875}}, Typeset`update$$ = 0, 
+      Hold[$CellContext`iOpt$$], 0, 980, 10}}, Typeset`size$$ = {
+    509., {377.134033203125, 382.865966796875}}, Typeset`update$$ = 0, 
     Typeset`initDone$$, Typeset`skipInitDone$$ = 
-    True, $CellContext`iOpt$3146$$ = 0}, 
+    True, $CellContext`iOpt$1038203$$ = 0}, 
     DynamicBox[Manipulate`ManipulateBoxes[
      1, StandardForm, "Variables" :> {$CellContext`iOpt$$ = 0}, 
       "ControllerVariables" :> {
-        Hold[$CellContext`iOpt$$, $CellContext`iOpt$3146$$, 0]}, 
+        Hold[$CellContext`iOpt$$, $CellContext`iOpt$1038203$$, 0]}, 
       "OtherVariables" :> {
        Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
         Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
         Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
          Typeset`skipInitDone$$}, "Body" :> 
-      Module[{$CellContext`moments$, $CellContext`dir$}, $CellContext`dir$ = 
-         "learn_params_dbm_centered"; $CellContext`moments$ = Association[]; 
+      Module[{$CellContext`moments$, $CellContext`dir$}, SetDirectory[
+          NotebookDirectory[]]; $CellContext`dir$ = 
+         "learn_dbm_centered_4_4_x10"; $CellContext`moments$ = Association[]; 
         Do[$CellContext`moments$[$CellContext`ixn] = Import[
              StringJoin[
              "../data/", $CellContext`dir$, "/moments/", $CellContext`ixn, 
@@ -348,23 +351,7 @@ Cell[BoxData[
                Span[1, All], {1, 2}], 
               Part[
                $CellContext`moments$["hY"], 
-               Span[1, All], {1, 3}]}, PlotRange -> {0, 500}, ImageSize -> 
-             250]}, {
-            ListLinePlot[{
-              Part[
-               $CellContext`moments$["bX1"], 
-               Span[1, All], {1, 2}], 
-              Part[
-               $CellContext`moments$["bX1"], 
-               Span[1, All], {1, 3}]}, PlotRange -> {0, 800}, ImageSize -> 
-             250], 
-            ListLinePlot[{
-              Part[
-               $CellContext`moments$["bY1"], 
-               Span[1, All], {1, 2}], 
-              Part[
-               $CellContext`moments$["bY1"], 
-               Span[1, All], {1, 3}]}, PlotRange -> {0, 800}, ImageSize -> 
+               Span[1, All], {1, 3}]}, PlotRange -> {0, 1500}, ImageSize -> 
              250]}, {
             ListLinePlot[{
               Part[
@@ -384,19 +371,19 @@ Cell[BoxData[
              250]}, {
             ListLinePlot[{
               Part[
-               $CellContext`moments$["bX2"], 
+               $CellContext`moments$["bX1"], 
                Span[1, All], {1, 2}], 
               Part[
-               $CellContext`moments$["bX2"], 
-               Span[1, All], {1, 3}]}, PlotRange -> {0, 800}, ImageSize -> 
+               $CellContext`moments$["bX1"], 
+               Span[1, All], {1, 3}]}, PlotRange -> {0, 1600}, ImageSize -> 
              250], 
             ListLinePlot[{
               Part[
-               $CellContext`moments$["bY2"], 
+               $CellContext`moments$["bY1"], 
                Span[1, All], {1, 2}], 
               Part[
-               $CellContext`moments$["bY2"], 
-               Span[1, All], {1, 3}]}, PlotRange -> {0, 800}, ImageSize -> 
+               $CellContext`moments$["bY1"], 
+               Span[1, All], {1, 3}]}, PlotRange -> {0, 1600}, ImageSize -> 
              250]}, {
             ListLinePlot[{
               Part[
@@ -413,10 +400,26 @@ Cell[BoxData[
               Part[
                $CellContext`moments$["wY1Y2"], 
                Span[1, All], {1, 3}]}, PlotRange -> {-500, 2000}, ImageSize -> 
+             250]}, {
+            ListLinePlot[{
+              Part[
+               $CellContext`moments$["bX2"], 
+               Span[1, All], {1, 2}], 
+              Part[
+               $CellContext`moments$["bX2"], 
+               Span[1, All], {1, 3}]}, PlotRange -> {0, 1600}, ImageSize -> 
+             250], 
+            ListLinePlot[{
+              Part[
+               $CellContext`moments$["bY2"], 
+               Span[1, All], {1, 2}], 
+              Part[
+               $CellContext`moments$["bY2"], 
+               Span[1, All], {1, 3}]}, PlotRange -> {0, 1600}, ImageSize -> 
              250]}}]], 
-      "Specifications" :> {{$CellContext`iOpt$$, 0, 9800, 10}}, 
+      "Specifications" :> {{$CellContext`iOpt$$, 0, 980, 10}}, 
       "Options" :> {}, "DefaultOptions" :> {}],
-     ImageSizeCache->{554., {480., 486.}},
+     ImageSizeCache->{554., {437., 443.}},
      SingleEvaluation->True],
     Deinitialization:>None,
     DynamicModuleValues:>{},
@@ -427,169 +430,15 @@ Cell[BoxData[
    Deployed->True,
    StripOnInput->False],
   Manipulate`InterpretManipulate[1]]], "Output",
- CellLabel->"Out[2]=",ExpressionUUID->"7e5050b7-43ba-48b7-a39e-b9967f54a37c"]
-}, Open  ]],
-
-Cell[CellGroupData[{
-
-Cell[BoxData[{
- RowBox[{
-  RowBox[{"SetDirectory", "[", 
-   RowBox[{"NotebookDirectory", "[", "]"}], "]"}], 
-  ";"}], "\[IndentingNewLine]", 
- RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
-  RowBox[{
-   RowBox[{"Module", "[", "\[IndentingNewLine]", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{"moments", ",", "dir"}], "}"}], ",", "\[IndentingNewLine]", 
-     RowBox[{
-      RowBox[{"dir", "=", "\"\<learn_params_dbm_centered\>\""}], ";", 
-      "\[IndentingNewLine]", 
-      RowBox[{"moments", "=", 
-       RowBox[{"Association", "[", "]"}]}], ";", "\[IndentingNewLine]", 
-      RowBox[{"Do", "[", "\[IndentingNewLine]", 
-       RowBox[{
-        RowBox[{
-         RowBox[{
-          RowBox[{"moments", "[", "ixn", "]"}], "=", 
-          RowBox[{"Import", "[", 
-           RowBox[{
-            RowBox[{
-            "\"\<../data/\>\"", "<>", "dir", "<>", "\"\</moments/\>\"", "<>", 
-             "ixn", "<>", "\"\<_\>\"", "<>", 
-             RowBox[{"IntegerString", "[", 
-              RowBox[{"iOpt", ",", "10", ",", "5"}], "]"}], "<>", 
-             "\"\<.txt\>\""}], ",", "\"\<Table\>\""}], "]"}]}], ";"}], 
-        "\[IndentingNewLine]", ",", 
-        RowBox[{"{", 
-         RowBox[{"ixn", ",", 
-          RowBox[{"{", 
-           RowBox[{
-           "\"\<hX\>\"", ",", "\"\<hY\>\"", ",", "\"\<bX1\>\"", ",", 
-            "\"\<bY1\>\"", ",", "\"\<wXX1\>\"", ",", "\"\<wYY1\>\"", ",", 
-            "\"\<bX2\>\"", ",", "\"\<bY2\>\"", ",", "\"\<wX1X2\>\"", ",", 
-            "\"\<wY1Y2\>\""}], "}"}]}], "}"}]}], "]"}], ";", 
-      "\[IndentingNewLine]", 
-      RowBox[{"Grid", "[", 
-       RowBox[{"{", "\[IndentingNewLine]", 
-        RowBox[{"{", 
-         RowBox[{
-          RowBox[{"ListLinePlot", "[", 
-           RowBox[{
-            RowBox[{"{", 
-             RowBox[{
-              RowBox[{
-               RowBox[{"moments", "[", "\"\<bX2\>\"", "]"}], "[", 
-               RowBox[{"[", 
-                RowBox[{";;", ",", 
-                 RowBox[{"{", 
-                  RowBox[{"1", ",", "2"}], "}"}]}], "]"}], "]"}], ",", 
-              RowBox[{
-               RowBox[{"moments", "[", "\"\<bX2\>\"", "]"}], "[", 
-               RowBox[{"[", 
-                RowBox[{";;", ",", 
-                 RowBox[{"{", 
-                  RowBox[{"1", ",", "3"}], "}"}]}], "]"}], "]"}]}], "}"}], 
-            ",", 
-            RowBox[{"PlotRange", "\[Rule]", 
-             RowBox[{"{", 
-              RowBox[{"50", ",", "150"}], "}"}]}], ",", 
-            RowBox[{"ImageSize", "\[Rule]", "400"}]}], "]"}], ",", 
-          RowBox[{"ListLinePlot", "[", 
-           RowBox[{
-            RowBox[{"{", 
-             RowBox[{
-              RowBox[{
-               RowBox[{"moments", "[", "\"\<bY2\>\"", "]"}], "[", 
-               RowBox[{"[", 
-                RowBox[{";;", ",", 
-                 RowBox[{"{", 
-                  RowBox[{"1", ",", "2"}], "}"}]}], "]"}], "]"}], ",", 
-              RowBox[{
-               RowBox[{"moments", "[", "\"\<bY2\>\"", "]"}], "[", 
-               RowBox[{"[", 
-                RowBox[{";;", ",", 
-                 RowBox[{"{", 
-                  RowBox[{"1", ",", "3"}], "}"}]}], "]"}], "]"}]}], "}"}], 
-            ",", 
-            RowBox[{"PlotRange", "\[Rule]", 
-             RowBox[{"{", 
-              RowBox[{"50", ",", "150"}], "}"}]}], ",", 
-            RowBox[{"ImageSize", "\[Rule]", "400"}]}], "]"}]}], "}"}], 
-        "\[IndentingNewLine]", "}"}], "]"}]}]}], "\[IndentingNewLine]", "]"}],
-    "\[IndentingNewLine]", ",", 
-   RowBox[{"{", 
-    RowBox[{"iOpt", ",", "0", ",", "9800", ",", "10"}], "}"}]}], 
-  "]"}]}], "Input",
- CellLabel->"In[70]:=",ExpressionUUID->"016ab87a-6460-447e-915d-8f0b60a596f8"],
-
-Cell[BoxData[
- TagBox[
-  StyleBox[
-   DynamicModuleBox[{$CellContext`iOpt$$ = 7500, Typeset`show$$ = True, 
-    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
-    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
-    "\"untitled\"", Typeset`specs$$ = {{
-      Hold[$CellContext`iOpt$$], 0, 9800, 10}}, Typeset`size$$ = {
-    809., {122.634033203125, 128.365966796875}}, Typeset`update$$ = 0, 
-    Typeset`initDone$$, Typeset`skipInitDone$$ = 
-    True, $CellContext`iOpt$107355$$ = 0}, 
-    DynamicBox[Manipulate`ManipulateBoxes[
-     1, StandardForm, "Variables" :> {$CellContext`iOpt$$ = 0}, 
-      "ControllerVariables" :> {
-        Hold[$CellContext`iOpt$$, $CellContext`iOpt$107355$$, 0]}, 
-      "OtherVariables" :> {
-       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
-        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
-        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
-         Typeset`skipInitDone$$}, "Body" :> 
-      Module[{$CellContext`moments$, $CellContext`dir$}, $CellContext`dir$ = 
-         "learn_params_dbm_centered"; $CellContext`moments$ = Association[]; 
-        Do[$CellContext`moments$[$CellContext`ixn] = Import[
-             StringJoin[
-             "../data/", $CellContext`dir$, "/moments/", $CellContext`ixn, 
-              "_", 
-              IntegerString[$CellContext`iOpt$$, 10, 5], ".txt"], "Table"]; 
-          Null, {$CellContext`ixn, {
-           "hX", "hY", "bX1", "bY1", "wXX1", "wYY1", "bX2", "bY2", "wX1X2", 
-            "wY1Y2"}}]; Grid[{{
-            ListLinePlot[{
-              Part[
-               $CellContext`moments$["bX2"], 
-               Span[1, All], {1, 2}], 
-              Part[
-               $CellContext`moments$["bX2"], 
-               Span[1, All], {1, 3}]}, PlotRange -> {50, 150}, ImageSize -> 
-             400], 
-            ListLinePlot[{
-              Part[
-               $CellContext`moments$["bY2"], 
-               Span[1, All], {1, 2}], 
-              Part[
-               $CellContext`moments$["bY2"], 
-               Span[1, All], {1, 3}]}, PlotRange -> {50, 150}, ImageSize -> 
-             400]}}]], 
-      "Specifications" :> {{$CellContext`iOpt$$, 0, 9800, 10}}, 
-      "Options" :> {}, "DefaultOptions" :> {}],
-     ImageSizeCache->{854., {182., 188.}},
-     SingleEvaluation->True],
-    Deinitialization:>None,
-    DynamicModuleValues:>{},
-    SynchronousInitialization->True,
-    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
-    UnsavedVariables:>{Typeset`initDone$$},
-    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
-   Deployed->True,
-   StripOnInput->False],
-  Manipulate`InterpretManipulate[1]]], "Output",
- CellLabel->"Out[71]=",ExpressionUUID->"c88b130f-4680-42e6-a7cc-90bdce7136c1"]
+ CellLabel->
+  "Out[173]=",ExpressionUUID->"cf19f411-0168-4aea-a17b-7236ac1b2a45"]
+}, Open  ]]
 }, Open  ]]
 }, Open  ]],
 
 Cell[CellGroupData[{
 
-Cell["Ixns", "Title",ExpressionUUID->"f562697f-c013-44b3-a16d-0c9a2ceb7664"],
+Cell[TextData[StyleBox["Ixns", "Chapter"]], "Title",ExpressionUUID->"f562697f-c013-44b3-a16d-0c9a2ceb7664"],
 
 Cell[CellGroupData[{
 
@@ -605,7 +454,7 @@ Cell[BoxData[{
      RowBox[{"{", 
       RowBox[{"ixns", ",", "dir"}], "}"}], ",", "\[IndentingNewLine]", 
      RowBox[{
-      RowBox[{"dir", "=", "\"\<learn_params_dbm_centered\>\""}], ";", 
+      RowBox[{"dir", "=", "\"\<learn_centered\>\""}], ";", 
       "\[IndentingNewLine]", 
       RowBox[{"ixns", "=", 
        RowBox[{"Association", "[", "]"}]}], ";", "\[IndentingNewLine]", 
@@ -659,7 +508,7 @@ Cell[BoxData[{
              RowBox[{"PlotRange", "\[Rule]", 
               RowBox[{"{", 
                RowBox[{
-                RowBox[{"-", "6"}], ",", "2"}], "}"}]}], ",", 
+                RowBox[{"-", "8"}], ",", "2"}], "}"}]}], ",", 
              RowBox[{"ImageSize", "\[Rule]", "250"}]}], "]"}], ",", 
            RowBox[{"ListLinePlot", "[", 
             RowBox[{
@@ -670,8 +519,7 @@ Cell[BoxData[{
              RowBox[{"PlotRange", "\[Rule]", 
               RowBox[{"{", 
                RowBox[{
-                RowBox[{"-", "4"}], ",", 
-                RowBox[{"-", "1.5"}]}], "}"}]}], ",", 
+                RowBox[{"-", "4"}], ",", "4"}], "}"}]}], ",", 
              RowBox[{"ImageSize", "\[Rule]", "250"}]}], "]"}]}], "}"}], ",", 
          "\[IndentingNewLine]", 
          RowBox[{"{", 
@@ -696,38 +544,36 @@ Cell[BoxData[{
              RowBox[{"PlotRange", "\[Rule]", 
               RowBox[{"{", 
                RowBox[{
-                RowBox[{"-", "4.5"}], ",", "2.0"}], "}"}]}], ",", 
+                RowBox[{"-", "4.5"}], ",", "4.0"}], "}"}]}], ",", 
              RowBox[{"ImageSize", "\[Rule]", "250"}]}], "]"}]}], "}"}]}], 
         "}"}], "]"}]}]}], "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]",
     ",", 
    RowBox[{"{", 
-    RowBox[{"iOpt2", ",", "0", ",", "9800", ",", "10"}], "}"}]}], 
-  "]"}]}], "Input",
- CellLabel->
-  "In[291]:=",ExpressionUUID->"db6f22f9-2906-4441-b306-2de873d2b84e"],
+    RowBox[{"iOpt2", ",", "0", ",", "980", ",", "10"}], "}"}]}], 
+  "]"}]}], "Input",ExpressionUUID->"db6f22f9-2906-4441-b306-2de873d2b84e"],
 
 Cell[BoxData[
  TagBox[
   StyleBox[
-   DynamicModuleBox[{$CellContext`iOpt2$$ = 7500, Typeset`show$$ = True, 
+   DynamicModuleBox[{$CellContext`iOpt2$$ = 980, Typeset`show$$ = True, 
     Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
     Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
     "\"untitled\"", Typeset`specs$$ = {{
-      Hold[$CellContext`iOpt2$$], 0, 9800, 10}}, Typeset`size$$ = {
-    509., {263.134033203125, 268.865966796875}}, Typeset`update$$ = 0, 
+      Hold[$CellContext`iOpt2$$], 0, 980, 10}}, Typeset`size$$ = {
+    509., {251.134033203125, 256.865966796875}}, Typeset`update$$ = 0, 
     Typeset`initDone$$, Typeset`skipInitDone$$ = 
-    True, $CellContext`iOpt2$93855$$ = 0}, 
+    True, $CellContext`iOpt2$4359$$ = 0}, 
     DynamicBox[Manipulate`ManipulateBoxes[
      1, StandardForm, "Variables" :> {$CellContext`iOpt2$$ = 0}, 
       "ControllerVariables" :> {
-        Hold[$CellContext`iOpt2$$, $CellContext`iOpt2$93855$$, 0]}, 
+        Hold[$CellContext`iOpt2$$, $CellContext`iOpt2$4359$$, 0]}, 
       "OtherVariables" :> {
        Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
         Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
         Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
          Typeset`skipInitDone$$}, "Body" :> 
       Module[{$CellContext`ixns$, $CellContext`dir$}, $CellContext`dir$ = 
-         "learn_params_dbm_centered"; $CellContext`ixns$ = Association[]; 
+         "learn_dbm_centered_4_4_x10"; $CellContext`ixns$ = Association[]; 
         Do[$CellContext`ixns$[$CellContext`ixn] = Import[
              StringJoin[
              "../data/", $CellContext`dir$, "/ixn_params/", $CellContext`ixn, 
@@ -742,11 +588,11 @@ Cell[BoxData[
              250]}, {
             ListLinePlot[{
               $CellContext`ixns$["wXX1"], 
-              $CellContext`ixns$["wYY1"]}, PlotRange -> {-6, 2}, ImageSize -> 
+              $CellContext`ixns$["wYY1"]}, PlotRange -> {-8, 2}, ImageSize -> 
              250], 
             ListLinePlot[{
               $CellContext`ixns$["bX1"], 
-              $CellContext`ixns$["bY1"]}, PlotRange -> {-4, -1.5}, ImageSize -> 
+              $CellContext`ixns$["bY1"]}, PlotRange -> {-4, 4}, ImageSize -> 
              250]}, {
             ListLinePlot[{
               $CellContext`ixns$["wX1X2"], 
@@ -754,11 +600,11 @@ Cell[BoxData[
              ImageSize -> 250], 
             ListLinePlot[{
               $CellContext`ixns$["bX2"], 
-              $CellContext`ixns$["bY2"]}, PlotRange -> {-4.5, 2.}, ImageSize -> 
+              $CellContext`ixns$["bY2"]}, PlotRange -> {-4.5, 4.}, ImageSize -> 
              250]}}]], 
-      "Specifications" :> {{$CellContext`iOpt2$$, 0, 9800, 10}}, 
+      "Specifications" :> {{$CellContext`iOpt2$$, 0, 980, 10}}, 
       "Options" :> {}, "DefaultOptions" :> {}],
-     ImageSizeCache->{554., {323., 329.}},
+     ImageSizeCache->{554., {311., 317.}},
      SingleEvaluation->True],
     Deinitialization:>None,
     DynamicModuleValues:>{},
@@ -769,44 +615,7 @@ Cell[BoxData[
    Deployed->True,
    StripOnInput->False],
   Manipulate`InterpretManipulate[1]]], "Output",
- CellLabel->
-  "Out[292]=",ExpressionUUID->"3690fefd-dba9-42f3-b9f4-09d4c745cc6a"],
-
-Cell[BoxData[
- TemplateBox[{
-  "Import","nffil",
-   "\"File \\!\\(\\*RowBox[{\\\"\\\\\\\"../data/learn_params_dbm_centered/ixn_\
-params/hX_06500.txt\\\\\\\"\\\"}]\\) not found during \
-\\!\\(\\*RowBox[{\\\"Import\\\"}]\\).\"",2,3,1,32884399336656688622,"Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellLabel->"",ExpressionUUID->"750e8e35-6a7e-490d-80a8-eda42c0c7dfa"],
-
-Cell[BoxData[
- TemplateBox[{
-  "Import","nffil",
-   "\"File \\!\\(\\*RowBox[{\\\"\\\\\\\"../data/learn_params_dbm_centered/ixn_\
-params/hY_06500.txt\\\\\\\"\\\"}]\\) not found during \
-\\!\\(\\*RowBox[{\\\"Import\\\"}]\\).\"",2,3,2,32884399336656688622,"Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellLabel->"",ExpressionUUID->"75451e4b-d13b-4c53-8101-655c848ac377"],
-
-Cell[BoxData[
- TemplateBox[{
-  "Import","nffil",
-   "\"File \\!\\(\\*RowBox[{\\\"\\\\\\\"../data/learn_params_dbm_centered/ixn_\
-params/bX1_06500.txt\\\\\\\"\\\"}]\\) not found during \
-\\!\\(\\*RowBox[{\\\"Import\\\"}]\\).\"",2,3,3,32884399336656688622,"Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellLabel->"",ExpressionUUID->"db17c88b-9f2c-459f-baab-427acb58a285"],
-
-Cell[BoxData[
- TemplateBox[{
-  "General","stop",
-   "\"Further output of \\!\\(\\*StyleBox[RowBox[{\\\"Import\\\", \\\"::\\\", \
-\\\"nffil\\\"}], \\\"MessageName\\\"]\\) will be suppressed during this \
-calculation.\"",2,3,4,32884399336656688622,"Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellLabel->"",ExpressionUUID->"c555eec2-ac70-4f08-af5f-c8e97122a6f9"]
+ CellLabel->"Out[19]=",ExpressionUUID->"5fb47301-e67f-47dc-b177-a6533c31205f"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -817,7 +626,7 @@ Cell[BoxData[
    RowBox[{"{", 
     RowBox[{"data", ",", "dir"}], "}"}], ",", "\[IndentingNewLine]", 
    RowBox[{
-    RowBox[{"dir", "=", "\"\<learn_params_dbm_centered\>\""}], ";", 
+    RowBox[{"dir", "=", "\"\<learn_centered\>\""}], ";", 
     "\[IndentingNewLine]", 
     RowBox[{"Do", "[", "\[IndentingNewLine]", 
      RowBox[{
@@ -846,8 +655,8 @@ Cell[BoxData[
           "\"\<bY1\>\"", ",", "\"\<wXX1\>\"", ",", "\"\<wYY1\>\"", ",", 
           "\"\<bX2\>\"", ",", "\"\<bY2\>\"", ",", "\"\<wX1X2\>\"", ",", 
           "\"\<wY1Y2\>\""}], "}"}]}], "}"}]}], "]"}], ";"}]}], 
-  "\[IndentingNewLine]", "]"}]], "Input",
- CellLabel->"In[79]:=",ExpressionUUID->"cc29084d-1e2e-4541-894a-e0ab041928fc"],
+  "\[IndentingNewLine]", "]"}]], "Input",ExpressionUUID->"cc29084d-1e2e-4541-\
+894a-e0ab041928fc"],
 
 Cell[CellGroupData[{
 
@@ -980,7 +789,7 @@ In[79]:=",ExpressionUUID->"890044b1-d060-4606-a28f-88ffa6ee3b4d"]
 }, Open  ]]
 },
 WindowSize->{1280, 755},
-WindowMargins->{{-5, Automatic}, {Automatic, 280}},
+WindowMargins->{{Automatic, 244}, {Automatic, 58}},
 FrontEndVersion->"12.0 for Mac OS X x86 (64-bit) (April 8, 2019)",
 StyleDefinitions->"Default.nb"
 ]
@@ -996,39 +805,34 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[580, 22, 79, 0, 98, "Title",ExpressionUUID->"f5e25c42-37fd-432f-905f-fdd1eff43cf3"],
+Cell[580, 22, 104, 0, 98, "Title",ExpressionUUID->"f5e25c42-37fd-432f-905f-fdd1eff43cf3"],
 Cell[CellGroupData[{
-Cell[684, 26, 11212, 278, 493, "Input",ExpressionUUID->"dcefeb2b-fc14-4f00-9f76-ddb9a4d52577"],
-Cell[11899, 306, 5164, 123, 985, "Output",ExpressionUUID->"7e5050b7-43ba-48b7-a39e-b9967f54a37c"]
-}, Open  ]],
+Cell[709, 26, 81, 0, 69, "Chapter",ExpressionUUID->"cf0cefc0-4a60-40fc-88c8-466f7b7c9579"],
 Cell[CellGroupData[{
-Cell[17100, 434, 3658, 90, 325, "Input",ExpressionUUID->"016ab87a-6460-447e-915d-8f0b60a596f8"],
-Cell[20761, 526, 2786, 59, 389, "Output",ExpressionUUID->"c88b130f-4680-42e6-a7cc-90bdce7136c1"]
+Cell[815, 30, 11180, 276, 493, "Input",ExpressionUUID->"dcefeb2b-fc14-4f00-9f76-ddb9a4d52577"],
+Cell[11998, 308, 5224, 125, 899, "Output",ExpressionUUID->"cf19f411-0168-4aea-a17b-7236ac1b2a45"]
+}, Open  ]]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[23596, 591, 76, 0, 98, "Title",ExpressionUUID->"f562697f-c013-44b3-a16d-0c9a2ceb7664"],
+Cell[17283, 440, 107, 0, 84, "Title",ExpressionUUID->"f562697f-c013-44b3-a16d-0c9a2ceb7664"],
 Cell[CellGroupData[{
-Cell[23697, 595, 4551, 111, 367, "Input",ExpressionUUID->"db6f22f9-2906-4441-b306-2de873d2b84e"],
-Cell[28251, 708, 3055, 64, 671, "Output",ExpressionUUID->"3690fefd-dba9-42f3-b9f4-09d4c745cc6a"],
-Cell[31309, 774, 374, 7, 24, "Message",ExpressionUUID->"750e8e35-6a7e-490d-80a8-eda42c0c7dfa"],
-Cell[31686, 783, 374, 7, 24, "Message",ExpressionUUID->"75451e4b-d13b-4c53-8101-655c848ac377"],
-Cell[32063, 792, 375, 7, 24, "Message",ExpressionUUID->"db17c88b-9f2c-459f-baab-427acb58a285"],
-Cell[32441, 801, 367, 7, 24, "Message",ExpressionUUID->"c555eec2-ac70-4f08-af5f-c8e97122a6f9"]
+Cell[17415, 444, 4477, 108, 367, "Input",ExpressionUUID->"db6f22f9-2906-4441-b306-2de873d2b84e"],
+Cell[21895, 554, 3044, 63, 647, "Output",ExpressionUUID->"5fb47301-e67f-47dc-b177-a6533c31205f"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[32845, 813, 1489, 36, 178, "Input",ExpressionUUID->"cc29084d-1e2e-4541-894a-e0ab041928fc"],
+Cell[24976, 622, 1456, 36, 178, "Input",ExpressionUUID->"cc29084d-1e2e-4541-894a-e0ab041928fc"],
 Cell[CellGroupData[{
-Cell[34359, 853, 375, 10, 24, "Print",ExpressionUUID->"0bbb9b36-8f3f-459c-9047-ee84749505d6"],
-Cell[34737, 865, 375, 10, 24, "Print",ExpressionUUID->"386cd351-8de9-4e9a-a28b-f88d948108be"],
-Cell[35115, 877, 383, 11, 24, "Print",ExpressionUUID->"92bf7b22-920b-46ac-ab0f-9e34321d1234"],
-Cell[35501, 890, 383, 11, 24, "Print",ExpressionUUID->"021a0547-7432-4f96-b65e-d1461d09753d"],
-Cell[35887, 903, 363, 10, 24, "Print",ExpressionUUID->"af68c268-a3dc-4f19-b64d-2fcf2c111f06"],
-Cell[36253, 915, 363, 10, 24, "Print",ExpressionUUID->"1677898b-b036-4a29-872f-d27ec58bef5f"],
-Cell[36619, 927, 383, 11, 24, "Print",ExpressionUUID->"620f2efc-656e-4cbe-aa17-b69be7a79936"],
-Cell[37005, 940, 383, 11, 24, "Print",ExpressionUUID->"030e853f-eb0b-42b8-9803-da9e3fe0dd3f"],
-Cell[37391, 953, 389, 11, 24, "Print",ExpressionUUID->"85869f3b-d380-4f4b-9b8e-ab42e0843a8d"],
-Cell[37783, 966, 373, 10, 24, "Print",ExpressionUUID->"890044b1-d060-4606-a28f-88ffa6ee3b4d"]
+Cell[26457, 662, 375, 10, 24, "Print",ExpressionUUID->"0bbb9b36-8f3f-459c-9047-ee84749505d6"],
+Cell[26835, 674, 375, 10, 24, "Print",ExpressionUUID->"386cd351-8de9-4e9a-a28b-f88d948108be"],
+Cell[27213, 686, 383, 11, 24, "Print",ExpressionUUID->"92bf7b22-920b-46ac-ab0f-9e34321d1234"],
+Cell[27599, 699, 383, 11, 24, "Print",ExpressionUUID->"021a0547-7432-4f96-b65e-d1461d09753d"],
+Cell[27985, 712, 363, 10, 24, "Print",ExpressionUUID->"af68c268-a3dc-4f19-b64d-2fcf2c111f06"],
+Cell[28351, 724, 363, 10, 24, "Print",ExpressionUUID->"1677898b-b036-4a29-872f-d27ec58bef5f"],
+Cell[28717, 736, 383, 11, 24, "Print",ExpressionUUID->"620f2efc-656e-4cbe-aa17-b69be7a79936"],
+Cell[29103, 749, 383, 11, 24, "Print",ExpressionUUID->"030e853f-eb0b-42b8-9803-da9e3fe0dd3f"],
+Cell[29489, 762, 389, 11, 24, "Print",ExpressionUUID->"85869f3b-d380-4f4b-9b8e-ab42e0843a8d"],
+Cell[29881, 775, 373, 10, 24, "Print",ExpressionUUID->"890044b1-d060-4606-a28f-88ffa6ee3b4d"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]

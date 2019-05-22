@@ -1,29 +1,37 @@
 import os
 
-# Dirs
-dir_names = ["data","data/learn_params","data/learn_params/ixn_params","data/learn_params/moments"]
+parent = "data"
+if not os.path.exists(parent):
+	os.makedirs(parent)
 
-for dir_name in dir_names:
-	if not os.path.exists(dir_name):
-		os.makedirs(dir_name)
-
-dir_name = "data/sample_traj"
+dir_name = parent + "/diagnose_sampling"
 if not os.path.exists(dir_name):
 	os.makedirs(dir_name)
 
-for i in range(0,500):
-	dir_name = "data/sample_traj/%04d"%i
-	if not os.path.exists(dir_name):
-		os.makedirs(dir_name)
+dir_name = parent + "/learn_centered"
+if not os.path.exists(dir_name):
+	os.makedirs(dir_name)
 
-	dir_name = "data/sample_traj/%04d/lattices"%i
-	if not os.path.exists(dir_name):
-		os.makedirs(dir_name)
+subdir_name = dir_name + "/moments"
+if not os.path.exists(subdir_name):
+	os.makedirs(subdir_name)
 
-	dir_name = "data/sample_traj/%04d/moments"%i
-	if not os.path.exists(dir_name):
-		os.makedirs(dir_name)
+subdir_name = dir_name + "/ixn_params"
+if not os.path.exists(subdir_name):
+	os.makedirs(subdir_name)
 
-	dir_name = "data/sample_traj/%04d/covs"%i
-	if not os.path.exists(dir_name):
-		os.makedirs(dir_name)
+subdir_name = dir_name + "/ixn_params_lp"
+if not os.path.exists(subdir_name):
+	os.makedirs(subdir_name)
+
+subdir_name = dir_name + "/diff_eq_rhs"
+if not os.path.exists(subdir_name):
+	os.makedirs(subdir_name)
+
+subdir_name = dir_name + "/sample_traj"
+if not os.path.exists(subdir_name):
+	os.makedirs(subdir_name)
+
+subdir_name = dir_name + "/sample_traj_lp"
+if not os.path.exists(subdir_name):
+	os.makedirs(subdir_name)
