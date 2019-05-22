@@ -1,6 +1,6 @@
-# Learn moment closure model for the Lotka-Volterra system using dynamic Boltzmann distributions (DBDs)
+# Code used in paper "Deep Learning Moment Closure Approximations using Dynamic Boltzmann Distributions"
 
-Code used in the paper XXX.
+This contains code used to generate figures in the paper "Deep Learning Moment Closure Approximations using Dynamic Boltzmann Distributions".
 
 ## Requirements
 
