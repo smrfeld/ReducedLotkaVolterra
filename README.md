@@ -1,6 +1,8 @@
 # Code used in paper "Deep Learning Moment Closure Approximations using Dynamic Boltzmann Distributions"
 
-This contains code used to generate figures in the paper "Deep Learning Moment Closure Approximations using Dynamic Boltzmann Distributions".
+This contains code used to generate figures in the paper "Deep Learning Moment Closure Approximations using Dynamic Boltzmann Distributions":
+
+(arXiv 1905.12122)[https://arxiv.org/abs/1905.12122]
 
 ## Requirements
 
