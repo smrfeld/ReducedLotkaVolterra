@@ -11,23 +11,24 @@
 
 ## Running the simulations
 
-Compile:
+Use the `CMake` in a dedicated build directory:
 ```
-g++ -std=c++14 -llattgillespie main.cpp -o main.o
+mkdir build && cd build
+cmake ..
+make main
+cd ../bin
+./main
 ```
-and run:
-```
-./main.o
-```
+
 The output is in the `data` directories.
 
 ## Calculating extra moments
 
-To calculate extra moments such as NNs and NNNs, compile:
+To calculate extra moments such as NNs and NNNs, use the `CMake` in a dedicated build directory:
 ```
-g++ -std=c++14 -lbmla calculate_moments.cpp -o calculate_moments.o
-```
-and run:
-```
-./calculate_moments.o
+mkdir build && cd build
+cmake ..
+make calculate_moments
+cd ../bin
+./calculate_moments
 ```
