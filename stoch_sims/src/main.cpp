@@ -127,7 +127,7 @@ int main() {
 		Run
 		********************/
 
-		sim.run(n_steps,verbose,write_counts,write_nns,write_latt,write_step,write_version_no,"data",periodic_bc);
+		sim.run(n_steps,verbose,write_counts,write_nns,write_latt,write_step,write_version_no,"../data",periodic_bc);
 	};
 
 	return 0;

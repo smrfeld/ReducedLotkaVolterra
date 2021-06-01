@@ -68,7 +68,7 @@ int main() {
         
         // Read
         for (auto i_chain=0; i_chain<no_markov_chains; i_chain++) {
-            latt->read_layer_from_file(type, i_chain, 0, "data/lattice_v"+pad_str(i_chain+1,3)+"/lattice/"+pad_str(timepoint,4)+".txt", true);
+            latt->read_layer_from_file(type, i_chain, 0, "../data/lattice_v"+pad_str(i_chain+1,3)+"/lattice/"+pad_str(timepoint,4)+".txt", true);
         };
         
         // ***************
